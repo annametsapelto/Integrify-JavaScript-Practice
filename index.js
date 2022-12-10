@@ -5,7 +5,7 @@ from 0 to 100
 
 const printNum = () => {
     for (let i = 0; i <= 100; i++) {
-        setTimeout(() => console.log(i), 1000)
+        console.log(i);
     }
 }
 
@@ -21,23 +21,18 @@ expected result: ['24-12-2014', '23-09-2022', '30-12-2021', '08-02-2021', '15-07
 You only need to produce the same array as expected result, no need to consider other 
 possibility.
  */
-/*
+
 let myArr = ['12-24-2014', '09-2022-23', '12-30-2021', '08-02-2021', '07-15-2018', '2019-12-14', '2022-14-12']
 const fixDate = (array) => {
-    let tempArray;
-    let newItem;
-    array.forEach(item => {
-        newItem = reArrangeItem(item);
-        tempArray.push(newItem);} 
-    )
+    const tempArray = array.map(date => {
+        const sortData = date.split("-").sort((a, b) => a - b);
+        return [sortData[1], sortData[0], sortData[2]].join("-");
+    });
+    return tempArray;
 }
 
-const reArrangeItem = (item) => {
-    let tempItem;
-    return tempItem;
-}
 let newArr = fixDate(myArr)
-console.log(newArr) */
+console.log(newArr)
 
 /*
 3. Counter function
