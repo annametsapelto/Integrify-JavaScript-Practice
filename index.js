@@ -21,13 +21,23 @@ expected result: ['24-12-2014', '23-09-2022', '30-12-2021', '08-02-2021', '15-07
 You only need to produce the same array as expected result, no need to consider other 
 possibility.
  */
-
+/*
 let myArr = ['12-24-2014', '09-2022-23', '12-30-2021', '08-02-2021', '07-15-2018', '2019-12-14', '2022-14-12']
 const fixDate = (array) => {
-    /* provide your code here */
+    let tempArray;
+    let newItem;
+    array.forEach(item => {
+        newItem = reArrangeItem(item);
+        tempArray.push(newItem);} 
+    )
+}
+
+const reArrangeItem = (item) => {
+    let tempItem;
+    return tempItem;
 }
 let newArr = fixDate(myArr)
-console.log(newArr)
+console.log(newArr) */
 
 /*
 3. Counter function
@@ -37,9 +47,17 @@ Expected result in the console: 11 days - 13 hours - 38 minutes - 20 seconds
 const dateFrom = new Date(500000)
 const dateTo = new Date(1000000000)
 const counter = (from, to) => {
-    /* provide your code here */
+    const differenceInMs = to - from;
+    const days = Math.floor(differenceInMs / (24*60*60*1000));
+    const daysAsMs = differenceInMs % (24*60*60*1000);
+    const hours = Math.floor(daysAsMs / (60*60*1000));
+    const hoursAsMs = differenceInMs % (60*60*1000);
+    const minutes = Math.floor(hoursAsMs / (60*1000));
+    const minutesAsMs = differenceInMs % (60*1000);
+    seconds = Math.floor(minutesAsMs / 1000);
+    return days + " days - " + hours + " hours - " + minutes + " minutes - " + seconds + " seconds";
 }
-const timer = counter()
+const timer = counter(dateFrom, dateTo);
 console.log(timer)
 
 /* 
