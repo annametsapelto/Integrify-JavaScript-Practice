@@ -62,15 +62,25 @@ console.log(timer)
 The data fetched from url should be displayed in index.html.
 */
 
-const getAllCountries = () => {
-    /* provide your code here */
+const getAllCountries = async () => {
+    const url_allCoutries = "https://restcountries.com/v3.1/all?fields=name";
+    const allCountries = await fetch(url_allCoutries).then((response) => response.json()).catch(error => console.error(error));
+    const countryNameList = allCountries.map(country => {
+        console.log(country.name.common);
+    })
+    const sortedCountryList = countryNameList.sort();
 }
 
-const getSingleCountry = () => {
-    /* provide your code here */
+const getSingleCountry = async (countryName) => {
+    const url = `https://restcountries.com/v3.1/name/${countryName}`;
+    const countryData = await fetch(url).then((response) => response.json()).catch(error => console.error(error));
 }
 
 getAllCountries()
+
+const searchCountry = (countryName) => {
+    getSingleCountry(countryName);
+}
 
 /*
 5. Provide logic for function generateNewFolderName, which receive an array as argument. Everytime the function gets called,
