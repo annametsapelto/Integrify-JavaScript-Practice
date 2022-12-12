@@ -66,7 +66,6 @@ const getAllCountries = async () => {
     const url_allCoutries = "https://restcountries.com/v3.1/all?fields=name";
     const allCountries = await fetch(url_allCoutries).then((response) => response.json()).catch(error => console.error(error));
     const countryNameList = allCountries.map(country => {
-        console.log(country.name.common);
     })
     const sortedCountryList = countryNameList.sort();
 }
@@ -77,11 +76,18 @@ const getSingleCountry = async (countryName) => {
 }
 
 getAllCountries()
-
-const searchCountry = (countryName) => {
+/*
+const searchCountry = (event) => {
+    event.preventDefault();
+    const countryName = document.getElementById('country');
     getSingleCountry(countryName);
 }
 
+const init = () => {
+    document.getElementById('submit-button').addEventListener('click', searchCountry)
+}
+document.addEventListener('Loaded', init)
+*/
 /*
 5. Provide logic for function generateNewFolderName, which receive an array as argument. Everytime the function gets called,
 it should check for folder name. If the folder named 'New Folder' does not exist, it should add the name 'New Folder' to array.
@@ -90,7 +96,15 @@ to array, and so on.
 */
 
 const generateNewFolderName = (existingFolders) => {
-    /*  provide your code here */
+    let folderName = "New Folder";
+    if (existingFolders.length === 0) {
+        existingFolders.push(folderName);
+    }
+    else {
+        const folderNumber = existingFolders.length;
+        folderName = `New Folder (${folderNumber})`;
+        existingFolders.push(folderName);
+    }
 }
 
 let folder = []

@@ -16,19 +16,23 @@
      <main>
         <h1>Countries</h1>
         <div>
-            <form>
-                <label for="country">Enter a country</label>
-                <input type="text" id="country" name="country" value="">
-                <input type="submit" value="Search" onclick="searchCountry">
+            <form id="country-form">
+                <label for="country">Enter a country:</label> <br>
+                <input type="text" id="country" name="country" value="" required oninput="handleChange()">
+                <input type="submit" id="submit-button" value="Search" onclick="searchCountry()">
+                <input type="reset" value="Reset">
             </form>
+        </div>
+        <div class="countrySearch">
+
         </div>
         <div>
             <h2>Here are all the countries</h2>
-            <div>
-                
+            <div class="allCountries">
+
             </div>
         </div>
      </main>
-    <script src="index.js"></script>
+    <script type="module" src="index.js"></script>
 </body>
 </html>

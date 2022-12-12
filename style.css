@@ -2,4 +2,18 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: rgb(46, 35, 58);
+}
+
+h1 {
+    margin-left: 2em;
+} 
+
+h2 {
+    margin-left: 3em;
+}
+
+form {
+    margin-left: 3em;
+    font-size: large;
 }
