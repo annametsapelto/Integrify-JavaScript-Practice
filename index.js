@@ -116,7 +116,8 @@ console.log(folder); //expect to see ['New Folder', 'New Folder (1)', 'New Folde
 
 /* 
 6. Complete class Book:
-- class Book should have 3 properties: title (read-only, must be a string but cannot be empty), cost (private, must be positive number) and profit (private, positive number > 0 and =< 0.5)
+- class Book should have 3 properties: title (read-only, must be a string but cannot be empty), cost (private, must be positive number) and profit 
+(private, positive number > 0 and =< 0.5)
 (error should be thrown if data is not valid)
 - give the logic to get book's price and profit separately.
 - give the logics to increase and decrease the price with a certain amount 
@@ -129,12 +130,48 @@ cost 14, profit 0.3 , tax 24% => expected price is 30.43
 */
 class Book {
     _title
+    _cost
+    _profit
+    _price
     constructor(title, cost, profit) {
+        if (title.trim() == "" || typeof title != "string") {
+            throw new Error ("Title cannot be empty and it must be a string.");
+        }
+        if (cost < 0 || typeof cost != "number") {
+            throw new Error ("The cost must be a positive number.");
+        }
+        if (profit < 0 || profit >= 0.5) {
+            throw new Error ("Profit has to be between 0 and 0.5.")
+        } else {
+            this._title = title;
+            this._cost = cost;
+            this._profit = profit;
+            this._price = this._cost / (1 - this._profit);
+        }
     }
+
+    get title() { return this._title; }
+
+    get cost() { return this._cost; }
+
+    get profit() { return this._profit; }
+
+    get price() { return this._price; }
 }
 
-class TaxableBook {
-    /* provide your code here */
+class TaxableBook extends Book {
+    _taxRate
+
+    constructor(title, cost, profit, taxRate) {
+        super(title, cost, profit);
+        this._taxRate = taxRate;
+    }
+
+    get taxRate() { return this._taxRate; } 
+
+    priceWithTaxRate() {
+        return this._price * (1 + this._taxRate / 100);
+    }
 }
 
 const book1 = new Book("The Power of Habits", 14, 0.3)
