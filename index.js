@@ -74,9 +74,11 @@ const getAllCountries = async () => {
 const getSingleCountry = async (countryName) => {
     const url = `https://restcountries.com/v3.1/name/${countryName}`;
     const countryData = await fetch(url).then((response) => response.json()).catch(error => console.error(error));
-    console.log(countryData);
+    const shownData = "Country common name: " + countryData[0].name.common + ", Capital: " + countryData[0].capital[0] + ", Region: " + countryData[0].region;
+    console.log(shownData);
 }
 
+getSingleCountry("Andorra");
 getAllCountries()
 /*
 const searchCountry = (event) => {
