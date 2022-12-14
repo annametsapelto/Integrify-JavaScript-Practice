@@ -19,17 +19,22 @@
             <form id="country-form">
                 <label for="country">Enter a country:</label> <br>
                 <input type="text" id="country" name="country" value="" required oninput="handleChange()">
-                <input type="submit" id="submit-button" value="Search" onclick="searchCountry()">
+                <input type="submit" id="submit-button" value="Search">
                 <input type="reset" value="Reset">
             </form>
         </div>
-        <div class="countrySearch">
+        <div class="searched-country" id="searched-country">
+
+        </div>
+        <div id="country-not-found">
 
         </div>
         <div>
             <h2>Here are all the countries</h2>
-            <div class="allCountries">
+            <div class="all-countries" id="all-countries">
+                <ul id="country-list">
 
+                </ul>
             </div>
         </div>
      </main>

@@ -68,7 +68,15 @@ const getAllCountries = async () => {
     const countryNameList = allCountries.map(country => {return country.name.common
     })
     const sortedCountryList = countryNameList.sort();
-    sortedCountryList.map(country => {console.log(country)});
+    sortedCountryList.map(country => createCountryList(country));
+}
+
+const createCountryList = (country) => {
+    console.log(country);
+    const ul = document.getElementById("country-list");
+    const countryListElement = document.createElement('li');
+    countryListElement.appendChild(document.createTextNode(country));
+    ul.appendChild(countryListElement);
 }
 
 const getSingleCountry = async (countryName) => {
@@ -78,20 +86,20 @@ const getSingleCountry = async (countryName) => {
     console.log(shownData);
 }
 
-getSingleCountry("Andorra");
-getAllCountries()
-/*
-const searchCountry = (event) => {
-    event.preventDefault();
-    const countryName = document.getElementById('country');
-    getSingleCountry(countryName);
-}
 
-const init = () => {
-    document.getElementById('submit-button').addEventListener('click', searchCountry)
-}
-document.addEventListener('Loaded', init)
-*/
+//getSingleCountry("Andorra");
+getAllCountries()
+
+
+const form = document.querySelector('#country-form');
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const countryName = formData.get("country");
+        getSingleCountry(countryName);
+        form.reset();
+    })
+
 /*
 5. Provide logic for function generateNewFolderName, which receive an array as argument. Everytime the function gets called,
 it should check for folder name. If the folder named 'New Folder' does not exist, it should add the name 'New Folder' to array.
