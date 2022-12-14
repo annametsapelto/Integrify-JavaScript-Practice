@@ -72,7 +72,6 @@ const getAllCountries = async () => {
 }
 
 const createCountryList = (country) => {
-    console.log(country);
     const ul = document.getElementById("country-list");
     const countryListElement = document.createElement('li');
     countryListElement.appendChild(document.createTextNode(country));
@@ -83,7 +82,10 @@ const getSingleCountry = async (countryName) => {
     const url = `https://restcountries.com/v3.1/name/${countryName}`;
     const countryData = await fetch(url).then((response) => response.json()).catch(error => console.error(error));
     const shownData = "Country common name: " + countryData[0].name.common + ", Capital: " + countryData[0].capital[0] + ", Region: " + countryData[0].region;
-    console.log(shownData);
+    const showCountryData = document.getElementById("searched-country");
+    const countryText = document.createElement("p");
+    countryText.appendChild(document.createTextNode(shownData));
+    showCountryData.appendChild(countryText);
 }
 
 
