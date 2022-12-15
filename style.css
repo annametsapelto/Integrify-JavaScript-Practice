@@ -17,3 +17,30 @@ form {
     margin-left: 3em;
     font-size: large;
 }
+
+.all-countries ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin: 5em;
+    grid-gap: 8px;
+}
+
+.all-countries li {
+    list-style: none;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: aliceblue;
+    box-shadow: 2px 2px 2px grey; 
+}
+
+.searched-country p {
+    margin: 3em;
+    font-size: x-large;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: aliceblue;
+    box-shadow: 2px 2px 2px grey;  
+    max-width: 15em;
+}
