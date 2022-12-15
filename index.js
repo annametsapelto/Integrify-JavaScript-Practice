@@ -2,7 +2,7 @@
 1. Fix the bugs in the codes below, to make the console print out different numbers
 from 0 to 100
  */
-/*
+
 const printNum = () => {
     for (let i = 0; i <= 100; i++) {
         console.log(i);
@@ -10,7 +10,7 @@ const printNum = () => {
 }
 
 printNum()
-*/
+
 /*
 2. Given the array below:
 myArr = ['12-24-2014', '09-2022-23', '12-30-2021', '08-02-2021', '07-15-2018', '2019-12-14', '2022-14-12']
@@ -64,11 +64,21 @@ The data fetched from url should be displayed in index.html.
 
 const getAllCountries = async () => {
     const url_allCoutries = "https://restcountries.com/v3.1/all?fields=name";
-    const allCountries = await fetch(url_allCoutries).then((response) => response.json()).catch(error => console.error(error));
-    const countryNameList = allCountries.map(country => {return country.name.common
-    })
+    const allCountries = await fetch(url_allCoutries)
+        .then((response) => response.json())
+        .catch(error => console.error(error));
+    const countryNameList = allCountries.map(country => {return country.name.common})
     const sortedCountryList = countryNameList.sort();
     sortedCountryList.map(country => createCountryList(country));
+}
+
+const showError = () => {
+    const element = document.getElementById("country-not-found");
+    const text = "Sorry, the country could not be found.";
+    const error = document.createElement('p');
+    error.appendChild(document.createTextNode(text));
+    error.className = "country-not-found";
+    element.appendChild(error);
 }
 
 const createCountryList = (country) => {
@@ -81,17 +91,19 @@ const createCountryList = (country) => {
 const getSingleCountry = async (countryName) => {
     const url = `https://restcountries.com/v3.1/name/${countryName}`;
     const countryData = await fetch(url).then((response) => response.json()).catch(error => console.error(error));
-    const shownData = "Country common name: " + countryData[0].name.common + ", Capital: " + countryData[0].capital[0] + ", Region: " + countryData[0].region;
-    const showCountryData = document.getElementById("searched-country");
-    const countryText = document.createElement("p");
-    countryText.appendChild(document.createTextNode(shownData));
-    showCountryData.appendChild(countryText);
+    console.log(countryData);
+    if(countryData[0] === undefined) {
+        showError();
+    } else {
+        const shownData = "Country common name: " + countryData[0].name.common + ", Capital: " + countryData[0].capital[0] + ", Region: " + countryData[0].region;
+        const showCountryData = document.getElementById("searched-country");
+        const countryText = document.createElement("p");
+        countryText.appendChild(document.createTextNode(shownData));
+        showCountryData.appendChild(countryText);
+    }
 }
 
-
-//getSingleCountry("Andorra");
 getAllCountries()
-
 
 const form = document.querySelector('#country-form');
     form.addEventListener('submit', event => {
@@ -164,13 +176,18 @@ class Book {
         }
     }
 
-    get title() { return this._title; }
+    getTitle() { return this._title; }
 
-    get cost() { return this._cost; }
+    getCost() { return this._cost; }
 
-    get profit() { return this._profit; }
+    getProfit() { return this._profit; }
 
-    get price() { return this._price; }
+    getPrice() { return this._price; }
+
+    changePrice(change) {
+        let newPrice = this.getPrice + change;
+        this._price = newPrice;
+    }
 }
 
 class TaxableBook extends Book {

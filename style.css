@@ -44,3 +44,14 @@ form {
     box-shadow: 2px 2px 2px grey;  
     max-width: 15em;
 }
+
+.country-not-found {
+    margin: 3em;
+    font-size: x-large;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgb(245, 176, 176);
+    box-shadow: 2px 2px 2px grey;  
+    max-width: 15em;
+}
